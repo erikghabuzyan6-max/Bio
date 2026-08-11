@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ᛖᛉ ᛢᛜᛈᛙᚣᚳ — psycho_b1o</title>
+  <meta name="description" content="Angelic, gothic, bloody bio page for psycho_b1o" />
+  <meta property="og:title" content="ᛖᛉ ᛢᛜᛈᛙᚣᚳ — psycho_b1o" />
+  <meta property="og:image" content="image-2.png" />
+
+  <style>
+    :root {
+      --bg: oklch(0.11 0.01 280);
+      --fg: oklch(0.96 0.01 280);
+      --card: oklch(0.16 0.015 280);
+      --muted: oklch(0.72 0.02 280);
+      --border: oklch(1 0 0 / 14%);
+      --blood: oklch(0.55 0.22 22);
+      --blood-deep: oklch(0.38 0.18 22);
+      --blood-glow: oklch(0.52 0.24 22 / 55%);
+      --angel-glow: oklch(0.85 0.05 85 / 35%);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Georgia, "Times New Roman", serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .rune {
+      font-family: "Segoe UI Historic", "Noto Sans Runic", Georgia, serif;
+    }
+
+    /* ===== Background layers ===== */
+    .page {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .bg-fog {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.28;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      filter: brightness(1.15) contrast(1.05);
+    }
+
+    .bg-angel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72vh;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+      filter: grayscale(0.35) brightness(1.18) contrast(1.05);
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, black 5%, transparent 92%);
+      -webkit-mask-image: linear-gradient(to bottom, black 5%, transparent 92%);
+    }
+
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, var(--angel-glow) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 25%, transparent 15%, var(--bg) 88%);
+      pointer-events: none;
+    }
+
+    /* soft angelic light rays */
+    .rays {
+      position: absolute;
+      inset: 0;
+      background: repeating-conic-gradient(
+        from 0deg at 50% -10%,
+        transparent 0deg,
+        oklch(0.9 0.04 85 / 4%) 2deg,
+        transparent 6deg
+      );
+      opacity: 0.4;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+
+    /* ===== Content ===== */
+    .content {
+      position: relative;
+      z-index: 2;
+      margin: 0 auto;
+      max-width: 24rem;
+      min-height: 100vh;
+      padding: 4.5rem 1.4rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.55rem;
+      letter-spacing: 0.28em;
+      line-height: 1.5;
+      text-shadow:
+        0 0 20px var(--blood-glow),
+        0 0 40px var(--angel-glow);
+      animation: softPulse 6s ease-in-out infinite;
+    }
+
+    @keyframes softPulse {
+      0%, 100% { text-shadow: 0 0 18px var(--blood-glow), 0 0 32px var(--angel-glow); }
+      50% { text-shadow: 0 0 28px var(--blood-glow), 0 0 50px var(--angel-glow); }
+    }
+
+    /* ===== Music Player ===== */
+    .player {
+      margin-top: 2.2rem;
+      width: 100%;
+      background: linear-gradient(
+        145deg,
+        color-mix(in oklab, var(--card) 70%, transparent),
+        color-mix(in oklab, var(--blood-deep) 18%, transparent)
+      );
+      border: 1px solid color-mix(in oklab, var(--blood) 35%, transparent);
+      border-radius: 1rem;
+      padding: 1.1rem 1.15rem 1.3rem;
+      backdrop-filter: blur(14px);
+      box-shadow:
+        0 0 30px var(--blood-glow),
+        inset 0 1px 0 oklch(1 0 0 / 8%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .player::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      left: -20%;
+      width: 140%;
+      height: 80%;
+      background: radial-gradient(ellipse, var(--angel-glow), transparent 70%);
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .player-top {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .play-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1.5px solid var(--blood);
+      background: radial-gradient(circle at 35% 30%, oklch(0.45 0.2 22), var(--blood-deep));
+      color: white;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      box-shadow: 0 0 18px var(--blood-glow);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .play-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 28px var(--blood-glow);
+    }
+    .play-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+    .play-btn .pause-icon { display: none; }
+    .play-btn.playing .play-icon { display: none; }
+    .play-btn.playing .pause-icon { display: block; }
+
+    .track-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .track-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .track-sub {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    /* ===== Bloody Timeline ===== */
+    .timeline-wrap {
+      position: relative;
+      z-index: 1;
+      padding-top: 0.4rem;
+    }
+
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .progress-track {
+      position: relative;
+      height: 7px;
+      background: oklch(0.18 0.02 20);
+      border-radius: 999px;
+      overflow: visible;
+      cursor: pointer;
+      border: 1px solid color-mix(in oklab, var(--blood) 40%, transparent);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blood-deep), var(--blood), oklch(0.65 0.2 25));
+      box-shadow: 0 0 12px var(--blood-glow);
+      position: relative;
+      transition: width 0.1s linear;
+    }
+
+    /* blood drops that hang from the progress bar */
+    .blood-drops {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 22px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .drop {
+      position: absolute;
+      top: -2px;
+      width: 6px;
+      height: 10px;
+      background: var(--blood);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      transform: translateX(-50%);
+      opacity: 0.85;
+      box-shadow: 0 0 6px var(--blood-glow);
+      animation: drip 2.8s ease-in infinite;
+    }
+    .drop:nth-child(1) { left: 18%; animation-delay: 0s; }
+    .drop:nth-child(2) { left: 42%; animation-delay: 0.7s; width: 5px; height: 8px; }
+    .drop:nth-child(3) { left: 68%; animation-delay: 1.4s; }
+    .drop:nth-child(4) { left: 88%; animation-delay: 0.3s; width: 4px; height: 7px; }
+
+    @keyframes drip {
+      0%   { transform: translateX(-50%) translateY(0) scaleY(1); opacity: 0.9; }
+      70%  { opacity: 0.7; }
+      100% { transform: translateX(-50%) translateY(16px) scaleY(1.3); opacity: 0; }
+    }
+
+    /* ===== Stats ===== */
+    .stats {
+      margin-top: 1.8rem;
+      width: 100%;
+      display: grid;
+      gap: 0.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    .stats > div {
+      padding: 0.55rem 1rem;
+      background: color-mix(in oklab, var(--card) 55%, transparent);
+      border: 1px solid var(--border);
+      border-radius: 0.55rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .tagline {
+      margin-top: 2.1rem;
+      text-align: center;
+      font-size: 1.15rem;
+      letter-spacing: 0.32em;
+      color: var(--blood);
+      text-shadow: 0 0 18px var(--blood-glow);
+    }
+
+    /* ===== Links ===== */
+    nav {
+      margin-top: 1.4rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      text-decoration: none;
+      color: inherit;
+      background: linear-gradient(
+        105deg,
+        color-mix(in oklab, var(--card) 60%, transparent),
+        color-mix(in oklab, var(--blood) 14%, transparent)
+      );
+      border: 1px solid var(--border);
+      border-radius: 0.8rem;
+      backdrop-filter: blur(12px);
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .link-card:hover {
+      border-color: color-mix(in oklab, var(--blood) 65%, transparent);
+      box-shadow: 0 0 30px var(--blood-glow);
+      transform: translateY(-2px);
+    }
+    .link-card .rune {
+      font-size: 1.15rem;
+      color: var(--blood);
+    }
+    .link-card .label {
+      font-size: 0.85rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+    .link-card .arrow {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: var(--muted);
+      transition: transform 0.3s;
+    }
+    .link-card:hover .arrow { transform: translateX(4px); }
+
+    .blood-img {
+      margin-top: 2.8rem;
+      width: 100%;
+      opacity: 0.38;
+      filter: saturate(1.6) brightness(1.05);
+      pointer-events: none;
+    }
+
+    .footer {
+      margin-top: 1.4rem;
+      font-size: 10px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: color-mix(in oklab, var(--muted) 65%, transparent);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <img class="bg-fog" src="image-3.png" alt="" aria-hidden="true" />
+    <img class="bg-angel" src="image-2.png" alt="" aria-hidden="true" />
+    <div class="vignette"></div>
+    <div class="rays"></div>
+
+    <div class="content">
+      <h1 class="rune">ᛒᚳᛜᛜᚦ_ᛜᚻ_ᛖᛉ_ᛒᛜᚦᛉ</h1>
+
+      <!-- MUSIC PLAYER -->
+      <div class="player">
+        <div class="player-top">
+          <button class="play-btn" id="playBtn" aria-label="Play / Pause">
+            <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="pause-icon" viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+          </button>
+          <div class="track-info">
+            <div class="track-title rune">ᛖᛉ ᛗᚢᛊᛁᚳ</div>
+            <div class="track-sub">psycho_b1o • now playing</div>
+          </div>
+        </div>
+
+        <div class="timeline-wrap">
+          <div class="time-row">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+          <div class="progress-track" id="progressTrack">
+            <div class="progress-fill" id="progressFill"></div>
+            <div class="blood-drops">
+              <div class="drop"></div>
+              <div class="drop"></div>
+              <div class="drop"></div>
+              <div class="drop"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <dl class="stats rune">
+        <div>ᚻᚣᛖᛊ / ᚺᚺᚺᚺ</div>
+        <div>ᚣᛩᛊ / 16</div>
+        <div>ᚹᛊᚣᛈᛊᚪᛋᚳ</div>
+      </dl>
+
+      <p class="tagline rune">ᛖᛉ ᛢᛜᛈᛙᚣᚳ ᛖᛊᚦᛙᚣ</p>
+
+      <nav id="links"></nav>
+
+      <img class="blood-img" src="image-5.png" alt="" aria-hidden="true" />
+      <p class="footer">psycho_b1o</p>
+    </div>
+  </main>
+
+  <!-- Put your mp3 here (same folder as index.html) -->
+  <audio id="audio" src="music.mp3" preload="metadata"></audio>
+
+  <script>
+    // ===== Links =====
+    const links = [
+      { label: "TikTok",     rune: "ᛏ", href: "https://www.tiktok.com/@psycho_b1o" },
+      { label: "Instagram",  rune: "ᛁ", href: "https://www.instagram.com/psycho_b1o" },
+      { label: "My Playlist",rune: "ᛗ", href: "https://open.spotify.com/user/psycho_b1o" },
+      { label: "Discord",    rune: "ᛞ", href: "https://discord.com/users/psycho_b1o" },
+    ];
+
+    const nav = document.getElementById("links");
+    links.forEach(l => {
+      const a = document.createElement("a");
+      a.href = l.href;
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      a.className = "link-card";
+      a.innerHTML = `
+        <span class="rune">${l.rune}</span>
+        <span class="label">${l.label}</span>
+        <span class="arrow">→</span>
+      `;
+      nav.appendChild(a);
+    });
+
+    // ===== Audio Player =====
+    const audio = document.getElementById("audio");
+    const playBtn = document.getElementById("playBtn");
+    const progressTrack = document.getElementById("progressTrack");
+    const progressFill = document.getElementById("progressFill");
+    const currentTimeEl = document.getElementById("currentTime");
+    const durationEl = document.getElementById("duration");
+
+    function formatTime(sec) {
+      if (!isFinite(sec)) return "0:00";
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${s.toString().padStart(2, "0")}`;
+    }
+
+    playBtn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.classList.add("playing");
+      } else {
+        audio.pause();
+        playBtn.classList.remove("playing");
+      }
+    });
+
+    audio.addEventListener("loadedmetadata", () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      const pct = (audio.currentTime / audio.duration) * 100 || 0;
+      progressFill.style.width = pct + "%";
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    });
+
+    audio.addEventListener("ended", () => {
+      playBtn.classList.remove("playing");
+      progressFill.style.width = "0%";
+    });
+
+    // Click / drag on timeline
+    function seek(e) {
+      const rect = progressTrack.getBoundingClientRect();
+      const pct = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
+      audio.currentTime = pct * audio.duration;
+    }
+
+    progressTrack.addEventListener("click", seek);
+
+    let isDragging = false;
+    progressTrack.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      seek(e);
+    });
+    window.addEventListener("mousemove", (e) => {
+      if (isDragging) seek(e);
+    });
+    window.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+
+    // Touch support
+    progressTrack.addEventListener("touchstart", (e) => {
+      isDragging = true;
+      seek(e.touches[0]);
+    }, { passive: true });
+    window.addEventListener("touchmove", (e) => {
+      if (isDragging) seek(e.touches[0]);
+    }, { passive: true });
+    window.addEventListener("touchend", () => {
+      isDragging = false;
+    });
+  </script>
+</body>
+</html>
