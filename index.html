@@ -63,7 +63,7 @@
       height: 72vh;
       width: 100%;
       object-fit: cover;
-      opacity: 0.38; /* чуть темнее */
+      opacity: 0.38;
       filter: grayscale(0.5) brightness(0.95) contrast(1.05) saturate(0.7);
       pointer-events: none;
       mask-image: linear-gradient(to bottom, black 5%, transparent 92%);
@@ -93,7 +93,6 @@
       mix-blend-mode: soft-light;
     }
 
-    /* ===== Кровавый пол ===== */
     .blood-floor {
       position: absolute;
       bottom: 0;
@@ -118,17 +117,17 @@
       margin: 0 auto;
       max-width: 24rem;
       min-height: 100vh;
-      padding: 0 1.3rem 4rem;
+      padding: 0 0 4rem;          /* убрал боковые отступы, чтобы ава могла быть шире */
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* ===== Аватар — правильный масштаб + плавный переход ===== */
+    /* ===== Аватар — шире, перекрывает края ===== */
     .avatar-hero {
       width: 100%;
-      max-width: 280px;          /* чуть уже, чтобы не было кривых краёв */
-      margin: 0 auto 0.8rem;
+      max-width: 100%;           /* на всю ширину контейнера */
+      margin: 0 auto 0.6rem;
       position: relative;
       overflow: hidden;
     }
@@ -137,40 +136,48 @@
       width: 100%;
       height: auto;
       display: block;
-      object-fit: contain;       /* сохраняем пропорции */
+      object-fit: cover;
       object-position: center top;
       filter: grayscale(0.35) contrast(1.18) brightness(0.9);
-      /* очень плавный fade вниз */
       mask-image: linear-gradient(
         to bottom,
         black 0%,
-        black 45%,
-        rgba(0,0,0,0.85) 65%,
-        rgba(0,0,0,0.4) 82%,
+        black 42%,
+        rgba(0,0,0,0.9) 62%,
+        rgba(0,0,0,0.45) 80%,
         transparent 100%
       );
       -webkit-mask-image: linear-gradient(
         to bottom,
         black 0%,
-        black 45%,
-        rgba(0,0,0,0.85) 65%,
-        rgba(0,0,0,0.4) 82%,
+        black 42%,
+        rgba(0,0,0,0.9) 62%,
+        rgba(0,0,0,0.45) 80%,
         transparent 100%
       );
     }
 
-    /* мягкое кровавое свечение под авой */
     .avatar-hero::after {
       content: "";
       position: absolute;
-      left: 10%;
-      right: 10%;
+      left: 5%;
+      right: 5%;
       bottom: 5%;
       height: 40%;
       background: radial-gradient(ellipse, var(--blood-glow), transparent 70%);
-      opacity: 0.3;
+      opacity: 0.28;
       pointer-events: none;
       mix-blend-mode: screen;
+    }
+
+    /* контент под авой с боковыми отступами */
+    .below-avatar {
+      width: 100%;
+      max-width: 24rem;
+      padding: 0 1.3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h1 {
@@ -185,7 +192,7 @@
         0 0 16px var(--blood-glow),
         0 0 32px var(--angel-glow);
       animation: softPulse 6s ease-in-out infinite;
-      margin-top: -0.8rem;
+      margin-top: -0.6rem;
     }
 
     @keyframes softPulse {
@@ -426,46 +433,49 @@
     <img class="blood-floor" src="image-5.png" alt="" aria-hidden="true" />
 
     <div class="content">
+      <!-- Аватар на всю ширину -->
       <div class="avatar-hero">
         <img src="avatar.png" alt="psycho_b1o" />
       </div>
 
-      <h1 class="rune">ᛒᚳᛜᛜᚦ_ᛜᚻ_ᛖᛉ_ᛒᛜᚦᛉ</h1>
+      <div class="below-avatar">
+        <h1 class="rune">ᛒᚳᛜᛜᚦ_ᛜᚻ_ᛖᛉ_ᛒᛜᚦᛉ</h1>
 
-      <div class="player">
-        <div class="player-top">
-          <button class="play-btn" id="playBtn" aria-label="Play / Pause">
-            <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            <svg class="pause-icon" viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
-          </button>
-          <div class="track-info">
-            <div class="track-title rune">ᛖᛉ ᛗᚢᛊᛁᚳ</div>
-            <div class="track-sub">psycho_b1o • now playing</div>
+        <div class="player">
+          <div class="player-top">
+            <button class="play-btn" id="playBtn" aria-label="Play / Pause">
+              <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="pause-icon" viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+            </button>
+            <div class="track-info">
+              <div class="track-title rune">ᛖᛉ ᛗᚢᛊᛁᚳ</div>
+              <div class="track-sub">psycho_b1o • now playing</div>
+            </div>
           </div>
-        </div>
 
-        <div class="timeline-wrap">
-          <div class="time-row">
-            <span id="currentTime">0:00</span>
-            <span id="duration">0:00</span>
-          </div>
-          <div class="progress-track" id="progressTrack">
-            <div class="progress-fill" id="progressFill"></div>
-            <div class="blood-drops">
-              <div class="drop"></div>
-              <div class="drop"></div>
-              <div class="drop"></div>
-              <div class="drop"></div>
+          <div class="timeline-wrap">
+            <div class="time-row">
+              <span id="currentTime">0:00</span>
+              <span id="duration">0:00</span>
+            </div>
+            <div class="progress-track" id="progressTrack">
+              <div class="progress-fill" id="progressFill"></div>
+              <div class="blood-drops">
+                <div class="drop"></div>
+                <div class="drop"></div>
+                <div class="drop"></div>
+                <div class="drop"></div>
+              </div>
             </div>
           </div>
         </div>
+
+        <p class="tagline rune">ᛖᛉ ᛢᛜᛈᛙᚣᚳ ᛖᛊᚦᛙᚣ</p>
+
+        <nav id="links"></nav>
+
+        <p class="footer">psycho_b1o</p>
       </div>
-
-      <p class="tagline rune">ᛖᛉ ᛢᛜᛈᛙᚣᚳ ᛖᛊᚦᛙᚣ</p>
-
-      <nav id="links"></nav>
-
-      <p class="footer">psycho_b1o</p>
     </div>
   </main>
 
