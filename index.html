@@ -10,14 +10,17 @@
 
   <style>
     :root {
-      --bg: oklch(0.10 0.004 265);          /* colder + less saturated */
+      --bg: oklch(0.10 0.004 265);
       --fg: oklch(0.95 0.008 265);
       --card: oklch(0.15 0.01 265);
       --muted: oklch(0.70 0.015 265);
       --border: oklch(1 0 0 / 12%);
-      --blood: oklch(0.55 0.22 22);
-      --blood-deep: oklch(0.38 0.18 22);
-      --blood-glow: oklch(0.52 0.24 22 / 50%);
+
+      /* colder, more neutral red */
+      --blood: oklch(0.52 0.18 12);
+      --blood-deep: oklch(0.36 0.15 12);
+      --blood-glow: oklch(0.48 0.20 12 / 48%);
+
       --angel-glow: oklch(0.88 0.03 90 / 28%);
     }
 
@@ -97,31 +100,35 @@
       margin: 0 auto;
       max-width: 24rem;
       min-height: 100vh;
-      padding: 4.5rem 1.4rem 3.5rem;
+      padding: 4.2rem 1.4rem 3.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
+    /* smaller title so it fits on screen */
     h1 {
       text-align: center;
-      font-size: 1.55rem;
-      letter-spacing: 0.28em;
-      line-height: 1.5;
+      font-size: 1.15rem;          /* was 1.55rem */
+      letter-spacing: 0.18em;      /* slightly tighter */
+      line-height: 1.45;
+      max-width: 100%;
+      padding: 0 0.3rem;
+      word-break: break-all;
       text-shadow:
-        0 0 20px var(--blood-glow),
-        0 0 40px var(--angel-glow);
+        0 0 18px var(--blood-glow),
+        0 0 36px var(--angel-glow);
       animation: softPulse 6s ease-in-out infinite;
     }
 
     @keyframes softPulse {
-      0%, 100% { text-shadow: 0 0 18px var(--blood-glow), 0 0 32px var(--angel-glow); }
-      50% { text-shadow: 0 0 28px var(--blood-glow), 0 0 50px var(--angel-glow); }
+      0%, 100% { text-shadow: 0 0 16px var(--blood-glow), 0 0 30px var(--angel-glow); }
+      50% { text-shadow: 0 0 24px var(--blood-glow), 0 0 46px var(--angel-glow); }
     }
 
     /* ===== Music Player ===== */
     .player {
-      margin-top: 2.4rem;
+      margin-top: 2.3rem;
       width: 100%;
       background: linear-gradient(
         145deg,
@@ -133,7 +140,7 @@
       padding: 1.1rem 1.15rem 1.3rem;
       backdrop-filter: blur(14px);
       box-shadow:
-        0 0 28px var(--blood-glow),
+        0 0 26px var(--blood-glow),
         inset 0 1px 0 oklch(1 0 0 / 7%);
       position: relative;
       overflow: hidden;
@@ -165,18 +172,18 @@
       height: 46px;
       border-radius: 50%;
       border: 1.5px solid var(--blood);
-      background: radial-gradient(circle at 35% 30%, oklch(0.45 0.2 22), var(--blood-deep));
+      background: radial-gradient(circle at 35% 30%, oklch(0.42 0.17 12), var(--blood-deep));
       color: white;
       display: grid;
       place-items: center;
       cursor: pointer;
       flex-shrink: 0;
-      box-shadow: 0 0 18px var(--blood-glow);
+      box-shadow: 0 0 16px var(--blood-glow);
       transition: transform 0.25s, box-shadow 0.25s;
     }
     .play-btn:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 28px var(--blood-glow);
+      box-shadow: 0 0 26px var(--blood-glow);
     }
     .play-btn svg {
       width: 18px;
@@ -226,7 +233,7 @@
     .progress-track {
       position: relative;
       height: 7px;
-      background: oklch(0.17 0.015 20);
+      background: oklch(0.17 0.015 15);
       border-radius: 999px;
       overflow: visible;
       cursor: pointer;
@@ -237,7 +244,7 @@
       height: 100%;
       width: 0%;
       border-radius: 999px;
-      background: linear-gradient(90deg, var(--blood-deep), var(--blood), oklch(0.65 0.2 25));
+      background: linear-gradient(90deg, var(--blood-deep), var(--blood), oklch(0.60 0.17 15));
       box-shadow: 0 0 12px var(--blood-glow);
       position: relative;
       transition: width 0.1s linear;
@@ -282,7 +289,7 @@
       font-size: 1.15rem;
       letter-spacing: 0.32em;
       color: var(--blood);
-      text-shadow: 0 0 18px var(--blood-glow);
+      text-shadow: 0 0 16px var(--blood-glow);
     }
 
     nav {
@@ -311,8 +318,8 @@
       transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
     }
     .link-card:hover {
-      border-color: color-mix(in oklab, var(--blood) 60%, transparent);
-      box-shadow: 0 0 28px var(--blood-glow);
+      border-color: color-mix(in oklab, var(--blood) 58%, transparent);
+      box-shadow: 0 0 26px var(--blood-glow);
       transform: translateY(-2px);
     }
     .link-card .rune {
@@ -336,7 +343,7 @@
       margin-top: 2.8rem;
       width: 100%;
       opacity: 0.36;
-      filter: saturate(1.5) brightness(1.02);
+      filter: saturate(1.4) brightness(1.0);
       pointer-events: none;
     }
 
