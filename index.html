@@ -125,8 +125,22 @@
       50% { text-shadow: 0 0 22px var(--blood-glow), 0 0 42px var(--angel-glow); }
     }
 
+    /* Mini ASCII under title */
+    .ascii {
+      margin-top: 1.1rem;
+      font-size: 8px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: color-mix(in oklab, var(--muted) 75%, transparent);
+      text-align: center;
+      white-space: pre;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      user-select: none;
+      opacity: 0.85;
+    }
+
     .player {
-      margin-top: 2.2rem;
+      margin-top: 1.8rem;
       width: 100%;
       background: linear-gradient(
         145deg,
@@ -363,6 +377,19 @@
 
     <div class="content">
       <h1 class="rune">ᛒᚳᛜᛜᚦ_ᛜᚻ_ᛖᛉ_ᛒᛜᚦᛉ</h1>
+
+      <pre class="ascii">⣸⠒⠠⢀
+⡇⠀⠀⠀⠑⠄⡀
+⠃⠀⠀⠀⠀⠀⢈⣵⣦⢸⣿⡧
+⠀⠀⠀⠀⠀⠀⣼⣿⣿⣾⢏
+⠀⠀⠀⠀⠀⠀⢿⣼⣿⢟⣷⣷⣆
+⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⡿⠈⢆
+⠀⠀⠀⠀⠀⢰⢸⣿⣿⣿⣿⠇⠀⠈
+⠀⠀⠀⠀⠀⢸⢸⣿⣿⣿⢸
+⠀⠀⠀⠀⠀⡈⣼⣿⣿⣿⡇
+⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⡇
+⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿
+⠀⠀⠀⠀⠾⢿⣿⣿⠿⠿⣿⡿</pre>
 
       <div class="player">
         <div class="player-top">
