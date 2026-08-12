@@ -63,7 +63,7 @@
       height: 72vh;
       width: 100%;
       object-fit: cover;
-      opacity: 0.50;
+      opacity: 0.45;
       filter: grayscale(0.45) brightness(1.12) contrast(1.02) saturate(0.75);
       pointer-events: none;
       mask-image: linear-gradient(to bottom, black 5%, transparent 92%);
@@ -74,8 +74,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 50% 0%, var(--angel-glow) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 25%, transparent 15%, var(--bg) 88%);
+        radial-gradient(ellipse at 50% 0%, var(--angel-glow) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 30%, transparent 10%, var(--bg) 85%);
       pointer-events: none;
     }
 
@@ -88,25 +88,25 @@
         oklch(0.9 0.03 90 / 3%) 2deg,
         transparent 6deg
       );
-      opacity: 0.35;
+      opacity: 0.3;
       pointer-events: none;
       mix-blend-mode: soft-light;
     }
 
-    /* ===== Кровавый пол ===== */
+    /* ===== Кровавый пол (лужа) ===== */
     .blood-floor {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 42vh;
+      height: 48vh;
       width: 100%;
       object-fit: cover;
       object-position: center bottom;
-      opacity: 0.5;
-      filter: blur(10px) saturate(1.7) brightness(0.65) contrast(1.1);
-      mask-image: linear-gradient(to top, black 0%, black 15%, transparent 95%);
-      -webkit-mask-image: linear-gradient(to top, black 0%, black 15%, transparent 95%);
+      opacity: 0.55;
+      filter: blur(12px) saturate(1.8) brightness(0.6) contrast(1.15);
+      mask-image: linear-gradient(to top, black 0%, black 25%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to top, black 0%, black 25%, transparent 100%);
       mix-blend-mode: multiply;
       pointer-events: none;
       z-index: 1;
@@ -118,54 +118,39 @@
       margin: 0 auto;
       max-width: 24rem;
       min-height: 100vh;
-      padding: 2.8rem 1.3rem 4rem;
+      padding: 0 1.3rem 4rem;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* ===== Аватар (драматичный) ===== */
-    .avatar-wrap {
-      position: relative;
-      margin-bottom: 1.6rem;
-      width: 148px;
-      height: 148px;
-    }
-
-    .avatar {
+    /* ===== Аватар как на референсе (крупный + плавный fade) ===== */
+    .avatar-hero {
       width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center 20%;
-      border: 1.5px solid color-mix(in oklab, var(--blood) 50%, transparent);
-      box-shadow:
-        0 0 0 6px oklch(0.07 0.01 265 / 75%),
-        0 0 28px var(--blood-glow),
-        0 0 60px var(--angel-glow),
-        0 0 90px oklch(0.2 0.08 17 / 30%);
-      filter: grayscale(0.35) contrast(1.15) brightness(0.9);
+      max-width: 340px;
+      margin: 0 auto 1.4rem;
+      position: relative;
+    }
+
+    .avatar-hero img {
+      width: 100%;
+      height: auto;
       display: block;
+      object-fit: cover;
+      filter: grayscale(0.4) contrast(1.2) brightness(0.88);
+      mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
     }
 
-    /* мягкое внешнее кольцо */
-    .avatar-wrap::before {
+    /* лёгкое свечение вокруг авы */
+    .avatar-hero::after {
       content: "";
       position: absolute;
-      inset: -10px;
-      border-radius: 50%;
-      border: 1px solid color-mix(in oklab, var(--blood) 22%, transparent);
+      inset: 10% 5% 20%;
+      background: radial-gradient(ellipse, var(--blood-glow), transparent 70%);
+      opacity: 0.35;
       pointer-events: none;
-    }
-
-    /* тонкий внутренний блик */
-    .avatar-wrap::after {
-      content: "";
-      position: absolute;
-      inset: 3px;
-      border-radius: 50%;
-      box-shadow: inset 0 0 20px oklch(0 0 0 / 45%);
-      pointer-events: none;
+      mix-blend-mode: screen;
     }
 
     h1 {
@@ -180,6 +165,7 @@
         0 0 16px var(--blood-glow),
         0 0 32px var(--angel-glow);
       animation: softPulse 6s ease-in-out infinite;
+      margin-top: -1.5rem; /* чуть поднимаем под аву */
     }
 
     @keyframes softPulse {
@@ -188,7 +174,7 @@
     }
 
     .player {
-      margin-top: 2rem;
+      margin-top: 1.8rem;
       width: 100%;
       background: linear-gradient(
         145deg,
@@ -417,12 +403,13 @@
     <div class="vignette"></div>
     <div class="rays"></div>
 
+    <!-- Кровавый пол -->
     <img class="blood-floor" src="image-5.png" alt="" aria-hidden="true" />
 
     <div class="content">
-      <!-- Аватар -->
-      <div class="avatar-wrap">
-        <img class="avatar" src="avatar.png" alt="psycho_b1o" />
+      <!-- Аватар как на референсе -->
+      <div class="avatar-hero">
+        <img src="avatar.png" alt="psycho_b1o" />
       </div>
 
       <h1 class="rune">ᛒᚳᛜᛜᚦ_ᛜᚻ_ᛖᛉ_ᛒᛜᚦᛉ</h1>
