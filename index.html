@@ -16,10 +16,10 @@
       --muted: oklch(0.70 0.015 265);
       --border: oklch(1 0 0 / 12%);
 
-      /* colder, more neutral red */
-      --blood: oklch(0.52 0.18 12);
-      --blood-deep: oklch(0.36 0.15 12);
-      --blood-glow: oklch(0.48 0.20 12 / 48%);
+      /* Твой цвет */
+      --blood: oklch(0.38 0.11 17);
+      --blood-deep: oklch(0.22 0.08 17);
+      --blood-glow: oklch(0.35 0.12 17 / 45%);
 
       --angel-glow: oklch(0.88 0.03 90 / 28%);
     }
@@ -100,42 +100,40 @@
       margin: 0 auto;
       max-width: 24rem;
       min-height: 100vh;
-      padding: 4.2rem 1.4rem 3.5rem;
+      padding: 4rem 1.3rem 3.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* smaller title so it fits on screen */
     h1 {
       text-align: center;
-      font-size: 1.15rem;          /* was 1.55rem */
-      letter-spacing: 0.18em;      /* slightly tighter */
-      line-height: 1.45;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      line-height: 1.4;
       max-width: 100%;
-      padding: 0 0.3rem;
+      padding: 0 0.2rem;
       word-break: break-all;
       text-shadow:
-        0 0 18px var(--blood-glow),
-        0 0 36px var(--angel-glow);
+        0 0 16px var(--blood-glow),
+        0 0 32px var(--angel-glow);
       animation: softPulse 6s ease-in-out infinite;
     }
 
     @keyframes softPulse {
-      0%, 100% { text-shadow: 0 0 16px var(--blood-glow), 0 0 30px var(--angel-glow); }
-      50% { text-shadow: 0 0 24px var(--blood-glow), 0 0 46px var(--angel-glow); }
+      0%, 100% { text-shadow: 0 0 14px var(--blood-glow), 0 0 28px var(--angel-glow); }
+      50% { text-shadow: 0 0 22px var(--blood-glow), 0 0 42px var(--angel-glow); }
     }
 
-    /* ===== Music Player ===== */
     .player {
-      margin-top: 2.3rem;
+      margin-top: 2.2rem;
       width: 100%;
       background: linear-gradient(
         145deg,
         color-mix(in oklab, var(--card) 70%, transparent),
-        color-mix(in oklab, var(--blood-deep) 16%, transparent)
+        color-mix(in oklab, var(--blood-deep) 18%, transparent)
       );
-      border: 1px solid color-mix(in oklab, var(--blood) 32%, transparent);
+      border: 1px solid color-mix(in oklab, var(--blood) 35%, transparent);
       border-radius: 1rem;
       padding: 1.1rem 1.15rem 1.3rem;
       backdrop-filter: blur(14px);
@@ -172,7 +170,7 @@
       height: 46px;
       border-radius: 50%;
       border: 1.5px solid var(--blood);
-      background: radial-gradient(circle at 35% 30%, oklch(0.42 0.17 12), var(--blood-deep));
+      background: radial-gradient(circle at 35% 30%, oklch(0.32 0.10 17), var(--blood-deep));
       color: white;
       display: grid;
       place-items: center;
@@ -233,18 +231,18 @@
     .progress-track {
       position: relative;
       height: 7px;
-      background: oklch(0.17 0.015 15);
+      background: oklch(0.16 0.02 17);
       border-radius: 999px;
       overflow: visible;
       cursor: pointer;
-      border: 1px solid color-mix(in oklab, var(--blood) 38%, transparent);
+      border: 1px solid color-mix(in oklab, var(--blood) 40%, transparent);
     }
 
     .progress-fill {
       height: 100%;
       width: 0%;
       border-radius: 999px;
-      background: linear-gradient(90deg, var(--blood-deep), var(--blood), oklch(0.60 0.17 15));
+      background: linear-gradient(90deg, var(--blood-deep), var(--blood), oklch(0.45 0.13 17));
       box-shadow: 0 0 12px var(--blood-glow);
       position: relative;
       transition: width 0.1s linear;
@@ -310,7 +308,7 @@
       background: linear-gradient(
         105deg,
         color-mix(in oklab, var(--card) 60%, transparent),
-        color-mix(in oklab, var(--blood) 12%, transparent)
+        color-mix(in oklab, var(--blood) 14%, transparent)
       );
       border: 1px solid var(--border);
       border-radius: 0.8rem;
@@ -318,7 +316,7 @@
       transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
     }
     .link-card:hover {
-      border-color: color-mix(in oklab, var(--blood) 58%, transparent);
+      border-color: color-mix(in oklab, var(--blood) 55%, transparent);
       box-shadow: 0 0 26px var(--blood-glow);
       transform: translateY(-2px);
     }
@@ -366,7 +364,6 @@
     <div class="content">
       <h1 class="rune">ᛒᚳᛜᛜᚦ_ᛜᚻ_ᛖᛉ_ᛒᛜᚦᛉ</h1>
 
-      <!-- MUSIC PLAYER -->
       <div class="player">
         <div class="player-top">
           <button class="play-btn" id="playBtn" aria-label="Play / Pause">
