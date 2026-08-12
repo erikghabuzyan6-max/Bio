@@ -63,8 +63,8 @@
       height: 72vh;
       width: 100%;
       object-fit: cover;
-      opacity: 0.38;
-      filter: grayscale(0.5) brightness(0.95) contrast(1.05) saturate(0.7);
+      opacity: 0.28; /* ещё темнее */
+      filter: grayscale(0.55) brightness(0.85) contrast(1.05) saturate(0.65);
       pointer-events: none;
       mask-image: linear-gradient(to bottom, black 5%, transparent 92%);
       -webkit-mask-image: linear-gradient(to bottom, black 5%, transparent 92%);
@@ -88,7 +88,7 @@
         oklch(0.9 0.03 90 / 3%) 2deg,
         transparent 6deg
       );
-      opacity: 0.28;
+      opacity: 0.25;
       pointer-events: none;
       mix-blend-mode: soft-light;
     }
@@ -117,17 +117,16 @@
       margin: 0 auto;
       max-width: 24rem;
       min-height: 100vh;
-      padding: 0 0 4rem;          /* убрал боковые отступы, чтобы ава могла быть шире */
+      padding: 0 0 4rem;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* ===== Аватар — шире, перекрывает края ===== */
     .avatar-hero {
       width: 100%;
-      max-width: 100%;           /* на всю ширину контейнера */
-      margin: 0 auto 0.6rem;
+      max-width: 100%;
+      margin: 0 auto 0.4rem;
       position: relative;
       overflow: hidden;
     }
@@ -170,7 +169,6 @@
       mix-blend-mode: screen;
     }
 
-    /* контент под авой с боковыми отступами */
     .below-avatar {
       width: 100%;
       max-width: 24rem;
@@ -180,28 +178,8 @@
       align-items: center;
     }
 
-    h1 {
-      text-align: center;
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
-      line-height: 1.4;
-      max-width: 100%;
-      padding: 0 0.2rem;
-      word-break: break-all;
-      text-shadow:
-        0 0 16px var(--blood-glow),
-        0 0 32px var(--angel-glow);
-      animation: softPulse 6s ease-in-out infinite;
-      margin-top: -0.6rem;
-    }
-
-    @keyframes softPulse {
-      0%, 100% { text-shadow: 0 0 14px var(--blood-glow), 0 0 28px var(--angel-glow); }
-      50% { text-shadow: 0 0 22px var(--blood-glow), 0 0 42px var(--angel-glow); }
-    }
-
     .player {
-      margin-top: 1.8rem;
+      margin-top: 1.4rem;
       width: 100%;
       background: linear-gradient(
         145deg,
@@ -433,14 +411,11 @@
     <img class="blood-floor" src="image-5.png" alt="" aria-hidden="true" />
 
     <div class="content">
-      <!-- Аватар на всю ширину -->
       <div class="avatar-hero">
         <img src="avatar.png" alt="psycho_b1o" />
       </div>
 
       <div class="below-avatar">
-        <h1 class="rune">ᛒᚳᛜᛜᚦ_ᛜᚻ_ᛖᛉ_ᛒᛜᚦᛉ</h1>
-
         <div class="player">
           <div class="player-top">
             <button class="play-btn" id="playBtn" aria-label="Play / Pause">
